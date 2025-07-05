@@ -15,10 +15,15 @@ void InputMgr::Init()
 	AxisInfo infoH;
 	infoH.axis = Axis::Horizontal;
 	infoH.positives.push_back(sf::Keyboard::D);
-	infoH.positives.push_back(sf::Keyboard::Right);
 	infoH.negatives.push_back(sf::Keyboard::A);
-	infoH.negatives.push_back(sf::Keyboard::Left);
+
+
 	axisInfoMap.insert({ Axis::Horizontal , infoH });
+
+	AxisInfo infoH2;
+	infoH2.axis = Axis::Horizontal2;
+	infoH2.positives.push_back(sf::Keyboard::Right);
+	infoH2.negatives.push_back(sf::Keyboard::Left);
 
 	AxisInfo infoV;
 	infoV.axis = Axis::Vertical;
@@ -45,10 +50,18 @@ void InputMgr::UpdateEvent(const sf::Event& ev)
 			downKeys.push_back(ev.key.code);
 			heldKeys.push_back(ev.key.code);
 		}
+		for (InputListener* listener : listeners) {
+			listener->onKeyPressed(ev.key.code);
+		}
 		break;
 	case sf::Event::KeyReleased:
 		Remove(heldKeys, ev.key.code);
 		upKeys.push_back(ev.key.code);
+
+		for (InputListener* listener : listeners) {
+			listener->onKeyReleased(ev.key.code);
+		}
+
 		break;
 	case sf::Event::MouseButtonPressed:
 	{
@@ -57,6 +70,10 @@ void InputMgr::UpdateEvent(const sf::Event& ev)
 		{
 			downKeys.push_back(code);
 			heldKeys.push_back(code);
+
+			for (InputListener* listener : listeners) {
+				listener->onMouseButtonPressed(ev.mouseButton.button);
+			}
 		}
 	}
 		break;
@@ -66,6 +83,11 @@ void InputMgr::UpdateEvent(const sf::Event& ev)
 		Remove(heldKeys, code);
 		upKeys.push_back(code);
 	}
+	for (InputListener* listener : listeners) {
+		listener->onMouseButtonReleased(ev.mouseButton.button);
+	}
+
+
 		break;
 	}
 }
@@ -174,3 +196,18 @@ sf::Vector2i InputMgr::GetMousePosition()
 	return mousePosition; 
 }
 
+void InputMgr::AddListener(InputListener* listener) {
+	if (listener) {
+		if (std::find(listeners.begin(), listeners.end(), listener) == listeners.end()) {
+			listeners.push_back(listener);
+			std::cout << "Input Listener added: " << listener << std::endl;
+		}
+	}
+}
+
+void InputMgr::RemoveListener(InputListener* listener) {
+	if (listener) {
+		listeners.erase(std::remove(listeners.begin(), listeners.end(), listener), listeners.end());
+		std::cout << "Input Listener removed: " << listener << std::endl;
+	}
+}

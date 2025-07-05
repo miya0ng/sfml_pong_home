@@ -63,10 +63,21 @@ void Bat::Reset()
 
 void Bat::Update(float dt)
 {
-	direction.x = InputMgr::GetAxis(Axis::Horizontal);
-	sf::Vector2f pos = GetPosition() + direction * speed * dt;
-	pos.x = Utils::Clamp(pos.x, minX, maxX);
-	SetPosition(pos);
+	if (GameObject::name == "bat")
+	{
+		direction.x = InputMgr::GetAxis(Axis::Horizontal);
+		sf::Vector2f pos = GetPosition() + direction * speed * dt;
+		pos.x = Utils::Clamp(pos.x, minX, maxX);
+		SetPosition(pos);
+	}
+
+	if (GameObject::name == "bat2")
+	{
+		direction.x = InputMgr::GetAxis(Axis::Horizontal2);
+		sf::Vector2f pos = GetPosition() + direction * speed * dt;
+		pos.x = Utils::Clamp(pos.x, minX, maxX);
+		SetPosition(pos);
+	}
 }
 
 void Bat::Draw(sf::RenderWindow& window)

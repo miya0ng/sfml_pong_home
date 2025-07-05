@@ -10,6 +10,7 @@ SceneGame::SceneGame() : Scene(SceneIds::Game)
 void SceneGame::Init()
 {
 	bat = (Bat*)AddGameObject(new Bat("Bat"));
+	bat2 = (Bat*)AddGameObject(new Bat("Bat2"));
 	ball = (Ball*)AddGameObject(new Ball("Ball"));
 	ball->SetBat(bat);
 	Scene::Init();
