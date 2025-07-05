@@ -97,7 +97,7 @@ void Ball::Update(float dt)
 		}
 	}
 
-	if (bat != nullptr || bat2 != nullptr)
+	if (bat != nullptr)
 	{
 		if (bat->GetName() == "Bat")
 		{
@@ -109,12 +109,18 @@ void Ball::Update(float dt)
 				std::cout << "아야야" << std::endl;
 			}
 		}
+	}
+
+	if (bat2 != nullptr)
+	{
+		std::cout << "들어옴" << std::endl;
 		if (bat2->GetName() == "Bat2")
 		{
 			const sf::FloatRect& batBounds = bat2->GetGlobalBounds();
 			if (shape.getGlobalBounds().intersects(batBounds))
 			{
-				pos.y = batBounds.height;
+				//pos.y = batBounds.height;
+				pos.y = batBounds.top + batBounds.height + shape.getRadius() * 2.f;
 				direction.y *= -1.f;
 				std::cout << "아야" << std::endl;
 			}

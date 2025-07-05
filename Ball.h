@@ -37,5 +37,6 @@ public:
 
 	void Fire(const sf::Vector2f& d, float s);
 	void SetBat(Bat* bat) { this->bat = bat; }
+	void SetBat2(Bat* bat) { this->bat2 = bat; }
 };
 
