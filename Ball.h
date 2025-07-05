@@ -12,6 +12,7 @@ protected:
 	sf::Vector2f direction;
 
 	Bat* bat = nullptr;
+	Bat* bat2 = nullptr;
 
 	float minX = 0.f;
 	float maxX = 0.f;

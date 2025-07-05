@@ -8,6 +8,7 @@ protected:
 
 	float speed = 500.f;
 	sf::Vector2f direction;
+	sf::Vector2f direction2;
 
 	float minX = 0.f;
 	float maxX = 0.f;

@@ -28,7 +28,6 @@ void Bat::SetOrigin(const sf::Vector2f& o)
 {
 	GameObject::SetOrigin(o);
 	shape.setOrigin(o);
-
 }
 
 void Bat::SetOrigin(Origins preset)
@@ -42,9 +41,19 @@ void Bat::SetOrigin(Origins preset)
 
 void Bat::Init()
 {
-	shape.setSize({100.f, 5.f});
-	shape.setFillColor(sf::Color::White);
-	SetOrigin(Origins::TC);
+	if(this->GetName() == "Bat")
+	{
+		shape.setSize({ 100.f, 5.f });
+		shape.setFillColor(sf::Color::White);
+		SetOrigin(Origins::TC);
+	}
+	else if (this->GetName() == "Bat2")
+	{
+		shape.setSize({ 200.f, 5.f });
+		shape.setFillColor(sf::Color::Blue);
+		SetOrigin(Origins::TC);
+	}
+	
 }
 
 void Bat::Release()
@@ -53,17 +62,30 @@ void Bat::Release()
 
 void Bat::Reset()
 {
-	sf::FloatRect bounds = FRAMEWORK.GetWindowBounds();
-	SetPosition({ bounds.width * 0.5f, bounds.height - 20.f });
+	if (this->GetName() == "Bat")
+	{
+		sf::FloatRect bounds = FRAMEWORK.GetWindowBounds();
+		SetPosition({ bounds.width * 0.5f, bounds.height - 20.f });
 
-	sf::Vector2f size = shape.getSize();
-	minX = bounds.left + size.x * 0.5f;
-	maxX = (bounds.left + bounds.width) - size.x * 0.5f;
+		sf::Vector2f size = shape.getSize();
+		minX = bounds.left + size.x * 0.5f;
+		maxX = (bounds.left + bounds.width) - size.x * 0.5f;
+	}
+
+	if (this->GetName() == "Bat2")
+	{
+		sf::FloatRect bounds = FRAMEWORK.GetWindowBounds();
+		SetPosition({ bounds.width * 0.5f, 20.f });
+
+		sf::Vector2f size = shape.getSize();
+		minX = bounds.left + size.x * 0.5f;
+		maxX = (bounds.left + bounds.width) - size.x * 0.5f;
+	}
 }
 
 void Bat::Update(float dt)
 {
-	if (GameObject::name == "bat")
+	if (this->GetName() == "Bat")
 	{
 		direction.x = InputMgr::GetAxis(Axis::Horizontal);
 		sf::Vector2f pos = GetPosition() + direction * speed * dt;
@@ -71,10 +93,10 @@ void Bat::Update(float dt)
 		SetPosition(pos);
 	}
 
-	if (GameObject::name == "bat2")
+	if (this->GetName() == "Bat2")
 	{
-		direction.x = InputMgr::GetAxis(Axis::Horizontal2);
-		sf::Vector2f pos = GetPosition() + direction * speed * dt;
+		direction2.x = InputMgr::GetAxis(Axis::Horizontal2);
+		sf::Vector2f pos = GetPosition() + direction2 * speed * dt;
 		pos.x = Utils::Clamp(pos.x, minX, maxX);
 		SetPosition(pos);
 	}

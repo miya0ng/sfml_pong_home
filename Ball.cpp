@@ -97,15 +97,31 @@ void Ball::Update(float dt)
 		}
 	}
 
-	if (bat != nullptr)
+	if (bat != nullptr || bat2 != nullptr)
 	{
-		const sf::FloatRect& batBounds = bat->GetGlobalBounds();
-		if (shape.getGlobalBounds().intersects(batBounds))
+		if (bat->GetName() == "Bat")
 		{
-			pos.y = batBounds.top;
-			direction.y *= -1.f;
+			const sf::FloatRect& batBounds = bat->GetGlobalBounds();
+			if (shape.getGlobalBounds().intersects(batBounds))
+			{
+				pos.y = batBounds.top;
+				direction.y *= -1.f;
+				std::cout << "아야야" << std::endl;
+			}
+		}
+		if (bat2->GetName() == "Bat2")
+		{
+			const sf::FloatRect& batBounds = bat2->GetGlobalBounds();
+			if (shape.getGlobalBounds().intersects(batBounds))
+			{
+				pos.y = batBounds.height;
+				direction.y *= -1.f;
+				std::cout << "아야" << std::endl;
+			}
 		}
 	}
+
+
 
 	SetPosition(pos);
 }
