@@ -49,8 +49,8 @@ void Bat::Init()
 	}
 	else if (this->GetName() == "Bat2")
 	{
-		shape.setSize({ 200.f, 5.f });
-		shape.setFillColor(sf::Color::Blue);
+		shape.setSize({ 100.f, 5.f });
+		shape.setFillColor(sf::Color::White);
 		SetOrigin(Origins::TC);
 	}
 	

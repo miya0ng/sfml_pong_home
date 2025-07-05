@@ -61,7 +61,7 @@ void Ball::Reset()
 	minX = bounds.left + radius;
 	maxX = (bounds.left + bounds.width) - radius;
 
-	minY = bounds.top + radius * 2.f;
+	minY = bounds.top - 200.f;
 	maxY = bounds.top + bounds.height + 200.f;
 
 	direction = { 0.f, 0.f };
@@ -85,8 +85,11 @@ void Ball::Update(float dt)
 
 	if (pos.y < minY)
 	{
-		pos.y = minY;
-		direction.y *= -1.f;
+		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::Game)
+		{
+			SceneGame* scene = (SceneGame*)SCENE_MGR.GetCurrentScene();
+			scene->SetGameOver();
+		}
 	}
 	else if (pos.y > maxY)
 	{
@@ -113,22 +116,18 @@ void Ball::Update(float dt)
 
 	if (bat2 != nullptr)
 	{
-		std::cout << "µé¾î¿È" << std::endl;
 		if (bat2->GetName() == "Bat2")
 		{
 			const sf::FloatRect& batBounds = bat2->GetGlobalBounds();
 			if (shape.getGlobalBounds().intersects(batBounds))
 			{
-				//pos.y = batBounds.height;
+				//pos.y = batBounds.height + batBounds.top; /////////////@
 				pos.y = batBounds.top + batBounds.height + shape.getRadius() * 2.f;
 				direction.y *= -1.f;
 				std::cout << "¾Æ¾ß" << std::endl;
 			}
 		}
 	}
-
-
-
 	SetPosition(pos);
 }
 
