@@ -89,12 +89,18 @@ void Ball::Update(float dt)
 		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::MultiGame)
 		{
 			MultiGame* scene = (MultiGame*)SCENE_MGR.GetCurrentScene();
-			scene->SetGameOver();
+			if (scene != nullptr)
+			{
+				scene->SetGameOver();
+			}
 		}
 		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::SingleGame)
 		{
 			SingleGame* singlescene = (SingleGame*)SCENE_MGR.GetCurrentScene();
-			singlescene->SetGameOver();
+			if (singlescene != nullptr)
+			{
+				singlescene->AddScore(10); // 10Á¡ Ãß°¡
+			}
 		}
 	}
 	else if (pos.y > maxY)
@@ -102,12 +108,18 @@ void Ball::Update(float dt)
 		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::MultiGame)
 		{
 			MultiGame* scene = (MultiGame*)SCENE_MGR.GetCurrentScene();
-			scene->SetGameOver();
+			if (scene)
+			{
+				scene->SetGameOver();
+			}
 		}
 		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::SingleGame)
 		{
-			pos.y = maxY;
-			direction.y *= -1.f;
+			SingleGame* singlescene = (SingleGame*)SCENE_MGR.GetCurrentScene();
+			if (singlescene != nullptr)
+			{
+				singlescene->SetGameOver();
+			}
 		}
 	}
 

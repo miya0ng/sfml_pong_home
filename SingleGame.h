@@ -20,6 +20,8 @@ protected:
 	sf::Text Retry;
 	sf::Font font;
 
+	int score;
+
 	float buttonY;
 
 	bool ballActive = false;
@@ -33,5 +35,6 @@ public:
 	void Enter() override;
 	void SetGameOver();
 	void Draw(sf::RenderWindow& window) override;
+	void AddScore(int amount);
 };
 

@@ -4,7 +4,7 @@
 #include "Ball.h"
 
 SingleGame::SingleGame()
-	: Scene(SceneIds::SingleGame)
+	: Scene(SceneIds::SingleGame), triangle(23,3)
 {
 }
 
@@ -17,13 +17,22 @@ void SingleGame::Init()
 
 	font.loadFromFile("fonts/DS-DIGIT.ttf");
 	textScore.setFont(font);
-	textScore.setString("score:");
+	textScore.setString("Score: " + std::to_string(score));
 	textScore.setCharacterSize(100);
 	textScore.setFillColor(sf::Color::White);
 	sf::FloatRect scoreBounds = textScore.getLocalBounds();
 	textGameOver.setOrigin(scoreBounds.width * 0.5f, scoreBounds.height * 0.5f);
 	textScore.setPosition(30.f, 0.f);
 
+	//choiceUI
+	sf::FloatRect triangleBounds = triangle.getLocalBounds();
+	triangle.setFillColor(sf::Color::White);
+	triangle.setOrigin(triangleBounds.width * 0.5f, triangleBounds.height * 0.5f);
+	triangle.setPosition(490, buttonY - 80.f);
+	triangle.setRotation(180);
+	
+	score = 0;
+	
 	Scene::Init();
 }
 
@@ -77,7 +86,7 @@ void SingleGame::Update(float dt)
 			}
 			if (triangle.getPosition().x == Exit.getPosition().x)
 			{
-				SCENE_MGR.ChangeScene(SceneIds::MultiGame);
+				SCENE_MGR.ChangeScene(SceneIds::Title);
 			}
 		}
 	}
@@ -86,6 +95,7 @@ void SingleGame::Update(float dt)
 void SingleGame::SetGameOver()
 {
 	isGameOver = true;
+	
 	sf::FloatRect windowBounds = FRAMEWORK.GetWindowBounds();
 
 	buttonY = windowBounds.height - 180.f;
@@ -104,6 +114,7 @@ void SingleGame::SetGameOver()
 	Retry.setString("Retry");
 	Retry.setFillColor(sf::Color::White);
 	Retry.setOrigin(RetryBounds.width * 0.5f, RetryBounds.height * 0.5f);
+
 	Retry.setPosition(windowBounds.width * 0.5f-150, buttonY-50.f);
 
 	sf::FloatRect ExitBounds = Exit.getLocalBounds();
@@ -131,4 +142,12 @@ void SingleGame::Draw(sf::RenderWindow& window)
 		window.draw(Retry);
 		window.draw(Exit);
 	}
+}
+
+void SingleGame::AddScore(int amount)
+{
+	score += amount;
+	textScore.setString("Score: " + std::to_string(score));
+	sf::FloatRect scoreBounds = textScore.getLocalBounds();
+	textScore.setOrigin(scoreBounds.width * 0.5f, scoreBounds.height * 0.5f);
 }
