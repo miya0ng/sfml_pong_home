@@ -25,6 +25,8 @@ void TitleScene::Init()
 	sf::FloatRect titleBounds = titleText.getLocalBounds();
 	titleText.setOrigin(titleBounds.width * 0.5f, titleBounds.height * 0.5f);
 	titleText.setPosition(windowBounds.width*0.5f, 50.f);
+	
+	float buttonY = windowBounds.height - 150.f;
 
 	//1pText
 	select1p.setFont(font);
@@ -32,15 +34,17 @@ void TitleScene::Init()
 	select1p.setCharacterSize(90);
 	sf::FloatRect select1Bounds = select1p.getLocalBounds();
 	select1p.setOrigin(select1Bounds.width * 0.5f, select1Bounds.height * 0.5f);
-	select1p.setPosition(windowBounds.width * 0.5f-150, 850.f);
-
+	select1p.setPosition(windowBounds.width * 0.5f-150, buttonY);
+	
 	//2pText
 	select2p.setFont(font);
 	select2p.setString("2P");
 	select2p.setCharacterSize(90);
 	sf::FloatRect select2Bounds = select2p.getLocalBounds();
 	select2p.setOrigin(select2Bounds.width * 0.5f, select2Bounds.height * 0.5f);
-	select2p.setPosition(windowBounds.width * 0.5f+150, 850.f);
+	select2p.setPosition(windowBounds.width * 0.5f+150, buttonY);
+
+	
 
 	Scene::Init();
 }
