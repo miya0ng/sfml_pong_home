@@ -132,20 +132,23 @@ void Ball::Update(float dt)
 	// 배트충돌
 
 
+	const sf::FloatRect& batBounds = bat->GetGlobalBounds();
+	sf::FloatRect ballBounds = shape.getGlobalBounds();
+
 	if (bat != nullptr)
 	{
-
 		// 1p 모드, 배트 충돌 시 10잠 추가
 		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::SingleGame)
 		{
-			SingleGame* singlescene = (SingleGame*)SCENE_MGR.GetCurrentScene();
-			if (singlescene != nullptr)
+			if (direction.y > 0 && ballBounds.intersects(batBounds) && ballBounds.top < batBounds.top)
 			{
-				singlescene->AddScore(10); // 10점 추가
+				SingleGame* singlescene = (SingleGame*)SCENE_MGR.GetCurrentScene();
+				if (singlescene != nullptr)
+				{
+					singlescene->AddScore(10); // 10점 추가
+				}
 			}
 		}
-		
-		
 		if (bat->GetName() == "Bat")
 		{
 			const sf::FloatRect& batBounds = bat->GetGlobalBounds();
