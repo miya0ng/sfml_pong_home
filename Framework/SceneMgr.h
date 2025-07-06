@@ -7,7 +7,8 @@ protected:
 	SceneMgr() = default;
 	~SceneMgr() = default;
 
-	std::vector<Scene*> scenes;
+	//std::vector<Scene*> scenes;
+	std::unordered_map<SceneIds, Scene*> scenes;
 
 	SceneIds startScene = SceneIds::Title;
 	SceneIds currentScene = SceneIds::None;
@@ -17,7 +18,9 @@ public:
 	void Init();
 	void Release();
 
-	Scene* GetCurrentScene() { return scenes[(int)currentScene]; }
+	//Scene* GetCurrentScene() { return scenes[(int)currentScene]; }
+
+	Scene* GetCurrentScene();
 	SceneIds GetCurrentSceneId() const { return currentScene; }
 	void ChangeScene(SceneIds id);
 
