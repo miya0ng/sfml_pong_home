@@ -7,6 +7,7 @@ protected:
 	sf::Text titleText;
 	sf::Text select1p;
 	sf::Text select2p;
+	sf::Text spaceText;
 	sf::Font font;
 	sf::CircleShape triangle;
 

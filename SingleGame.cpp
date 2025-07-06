@@ -10,8 +10,6 @@ SingleGame::SingleGame()
 
 void SingleGame::Init()
 {
-	fontIds.push_back("../fonts/DS-DIGIT.ttf");
-
 	bat = (Bat*)AddGameObject(new Bat("Bat"));
 	ball = (Ball*)AddGameObject(new Ball("Ball"));
 

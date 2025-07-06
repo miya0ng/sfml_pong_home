@@ -7,8 +7,8 @@
 void SceneMgr::Init()
 {
 	scenes.push_back(new TitleScene());
-	scenes.push_back(new MultiGame());
 	scenes.push_back(new SingleGame());
+	scenes.push_back(new MultiGame());
 
 	for (auto scene : scenes)
 	{

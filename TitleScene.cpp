@@ -45,11 +45,18 @@ void TitleScene::Init()
 	select2p.setOrigin(select2Bounds.width * 0.5f, select2Bounds.height * 0.5f);
 	select2p.setPosition(windowBounds.width * 0.5f+150, buttonY);
 
+	//press space
+	spaceText.setFont(font);
+	spaceText.setString("pressSpaceBar");
+	spaceText.setCharacterSize(90);
+	sf::FloatRect spaceTextBounds = spaceText.getLocalBounds();
+	spaceText.setOrigin(spaceTextBounds.width * 0.5f, spaceTextBounds.height * 0.5f);
+	spaceText.setPosition(windowBounds.width * 0.5f + 150, buttonY);
+
 	//choiceUI
-	selectButtonX = select1p.getPosition().x;
 	sf::FloatRect triangleBounds = select2p.getLocalBounds();
 	triangle.setOrigin(triangleBounds.width * 0.5f, triangleBounds.height * 0.5f);
-	triangle.setPosition(selectButtonX, buttonY-80.f);
+	triangle.setPosition(select1p.getPosition().x , buttonY-80.f);
 	triangle.setRotation(180);
 
 	Scene::Init();
@@ -57,13 +64,26 @@ void TitleScene::Init()
 
 void TitleScene::Update(float dt)
 {
-	if (InputMgr::GetKeyDown(sf::Keyboard::Z))
+	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
 	{
-		SCENE_MGR.ChangeScene(SceneIds::SingleGame);
+		triangle.setPosition(select1p.getPosition().x, buttonY - 80.f);
+	
 	}
-	if (InputMgr::GetKeyDown(sf::Keyboard::X))
+	else if (InputMgr::GetKeyDown(sf::Keyboard::Right))
 	{
-		SCENE_MGR.ChangeScene(SceneIds::MultiGame);
+		triangle.setPosition(select2p.getPosition().x, buttonY - 80.f);
+	}
+
+	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
+	{
+		if (triangle.getPosition().x == select1p.getPosition().x)
+		{
+		SCENE_MGR.ChangeScene(SceneIds::SingleGame);
+		}
+		if (triangle.getPosition().x == select2p.getPosition().x)
+		{
+			SCENE_MGR.ChangeScene(SceneIds::MultiGame);
+		}
 	}
 }
 
