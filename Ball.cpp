@@ -64,6 +64,7 @@ void Ball::Reset()
 
 	minY = bounds.top - 200.f;
 	maxY = bounds.top + bounds.height + 200.f;
+	min1Y = bounds.top+radius;
 
 	direction = { 0.f, 0.f };
 	speed = 0.f;
@@ -94,15 +95,19 @@ void Ball::Update(float dt)
 				scene->SetGameOver();
 			}
 		}
+	}
+
+	if (pos.y < min1Y)
+	{
 		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::SingleGame)
 		{
-			SingleGame* singlescene = (SingleGame*)SCENE_MGR.GetCurrentScene();
-			if (singlescene != nullptr)
-			{
-				singlescene->AddScore(10); // 10점 추가
-			}
+			pos.y = min1Y;
+			direction.y *= -1.f;
 		}
 	}
+
+
+
 	else if (pos.y > maxY)
 	{
 		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::MultiGame)
@@ -124,10 +129,23 @@ void Ball::Update(float dt)
 	}
 
 
-	//collision with bat
+	// 배트충돌
+
 
 	if (bat != nullptr)
 	{
+
+		// 1p 모드, 배트 충돌 시 10잠 추가
+		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::SingleGame)
+		{
+			SingleGame* singlescene = (SingleGame*)SCENE_MGR.GetCurrentScene();
+			if (singlescene != nullptr)
+			{
+				singlescene->AddScore(10); // 10점 추가
+			}
+		}
+		
+		
 		if (bat->GetName() == "Bat")
 		{
 			const sf::FloatRect& batBounds = bat->GetGlobalBounds();

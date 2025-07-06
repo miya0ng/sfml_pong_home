@@ -16,6 +16,7 @@ protected:
 
 	float minX = 0.f;
 	float maxX = 0.f;
+	float min1Y = 0.f;
 	float minY = 0.f;
 	float maxY = 0.f;
 
