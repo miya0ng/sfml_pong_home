@@ -8,7 +8,9 @@ class UiHud :
 protected:
     //TextGo* TitleText;
 
-    sf::Text titleText;
+    sf::Text textScore;
+    sf::Text textScore2;
+    sf::Text textGameOver;
     std::string fontId;
 
     bool isShowMsg = false;

@@ -54,7 +54,7 @@ void TitleScene::Init()
 	spaceText.setPosition(windowBounds.width * 0.5f + 150, buttonY);
 
 	//choiceUI
-	sf::FloatRect triangleBounds = select2p.getLocalBounds();
+	sf::FloatRect triangleBounds = triangle.getLocalBounds();
 	triangle.setOrigin(triangleBounds.width * 0.5f, triangleBounds.height * 0.5f);
 	triangle.setPosition(select1p.getPosition().x , buttonY-80.f);
 	triangle.setRotation(180);

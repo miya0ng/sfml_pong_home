@@ -2,6 +2,7 @@
 #include "Ball.h"
 #include "Bat.h"
 #include "MultiGame.h"
+#include "SingleGame.h"
 
 Ball::Ball(const std::string& name)
 	: GameObject(name)
@@ -90,6 +91,11 @@ void Ball::Update(float dt)
 			MultiGame* scene = (MultiGame*)SCENE_MGR.GetCurrentScene();
 			scene->SetGameOver();
 		}
+		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::SingleGame)
+		{
+			SingleGame* singlescene = (SingleGame*)SCENE_MGR.GetCurrentScene();
+			singlescene->SetGameOver();
+		}
 	}
 	else if (pos.y > maxY)
 	{
@@ -97,6 +103,11 @@ void Ball::Update(float dt)
 		{
 			MultiGame* scene = (MultiGame*)SCENE_MGR.GetCurrentScene();
 			scene->SetGameOver();
+		}
+		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::SingleGame)
+		{
+			pos.y = maxY;
+			direction.y *= -1.f;
 		}
 	}
 
