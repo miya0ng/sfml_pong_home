@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Ball.h"
 #include "Bat.h"
-#include "SceneGame.h"
+#include "MultiGame.h"
 
 Ball::Ball(const std::string& name)
 	: GameObject(name)
@@ -85,20 +85,23 @@ void Ball::Update(float dt)
 
 	if (pos.y < minY)
 	{
-		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::Game)
+		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::MultiGame)
 		{
-			SceneGame* scene = (SceneGame*)SCENE_MGR.GetCurrentScene();
+			MultiGame* scene = (MultiGame*)SCENE_MGR.GetCurrentScene();
 			scene->SetGameOver();
 		}
 	}
 	else if (pos.y > maxY)
 	{
-		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::Game)
+		if (SCENE_MGR.GetCurrentSceneId() == SceneIds::MultiGame)
 		{
-			SceneGame* scene = (SceneGame*)SCENE_MGR.GetCurrentScene();
+			MultiGame* scene = (MultiGame*)SCENE_MGR.GetCurrentScene();
 			scene->SetGameOver();
 		}
 	}
+
+
+	//collision with bat
 
 	if (bat != nullptr)
 	{

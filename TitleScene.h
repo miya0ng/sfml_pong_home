@@ -1,0 +1,22 @@
+#pragma once
+#include "Scene.h"
+
+class TitleScene : public Scene
+{
+protected:
+	sf::Text titleText;
+	sf::Text select1p;
+	sf::Text select2p;
+	sf::Font font;
+
+public:
+
+	TitleScene();
+	~TitleScene();
+
+	void Init() override;
+	void Update(float dt) override;
+	void Enter() override;
+	void SetGameOver();
+	void Draw(sf::RenderWindow& window) override;
+};

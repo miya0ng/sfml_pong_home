@@ -7,10 +7,11 @@ C:\Users\이승연\Desktop\경일\timber_pong\InputListener.cpp;C:\Users\이승�
 C:\Users\이승연\Desktop\경일\timber_pong\main.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\main.obj
 C:\Users\이승연\Desktop\경일\timber_pong\Framework\SpriteGo.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\SpriteGo.obj
 C:\Users\이승연\Desktop\경일\timber_pong\Framework\Scene.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\Scene.obj
-C:\Users\이승연\Desktop\경일\timber_pong\SceneDev1.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\SceneDev1.obj
-C:\Users\이승연\Desktop\경일\timber_pong\SceneDev2.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\SceneDev2.obj
+C:\Users\이승연\Desktop\경일\timber_pong\SingleGame.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\SingleGame.obj
+C:\Users\이승연\Desktop\경일\timber_pong\TitleScene.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\TitleScene.obj
 C:\Users\이승연\Desktop\경일\timber_pong\Framework\SceneMgr.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\SceneMgr.obj
-C:\Users\이승연\Desktop\경일\timber_pong\SceneGame.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\SceneGame.obj
+C:\Users\이승연\Desktop\경일\timber_pong\MultiGame.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\MultiGame.obj
 C:\Users\이승연\Desktop\경일\timber_pong\stdafx.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\stdafx.obj
 C:\Users\이승연\Desktop\경일\timber_pong\Framework\TextGo.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\TextGo.obj
 C:\Users\이승연\Desktop\경일\timber_pong\Framework\Utils.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\Utils.obj
+C:\Users\이승연\Desktop\경일\timber_pong\UiHud.cpp;C:\Users\이승연\Desktop\경일\timber_pong\sfml-pong\x64\Debug\UiHud.obj

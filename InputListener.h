@@ -2,7 +2,6 @@
 #include "InputMgr.h"
 class InputListener 
 {
-
 private:
 public:
     virtual ~InputListener() = default; // 가상 소멸자

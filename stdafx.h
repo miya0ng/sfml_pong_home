@@ -21,4 +21,6 @@
 #include "Scene.h"
 #include "SceneMgr.h"
 #include "Framework.h"
+#include "TextGo.h"
+#include "UiHud.h"
 
