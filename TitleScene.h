@@ -8,7 +8,10 @@ protected:
 	sf::Text select1p;
 	sf::Text select2p;
 	sf::Font font;
+	sf::CircleShape triangle;
 
+	float buttonY;
+	float selectButtonX;
 public:
 
 	TitleScene();

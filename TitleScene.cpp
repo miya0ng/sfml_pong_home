@@ -5,7 +5,7 @@
 #include "TextGo.h"
 
 TitleScene::TitleScene()
-	:Scene(SceneIds::Title)
+	:Scene(SceneIds::Title), triangle(25,3)
 {
 }
 
@@ -19,14 +19,15 @@ void TitleScene::Init()
 	sf::FloatRect windowBounds = FRAMEWORK.GetWindowBounds();
 
 	titleText.setFont(font);
+
 	//titleText
 	titleText.setString("Ping_Pong!");
 	titleText.setCharacterSize(120);
 	sf::FloatRect titleBounds = titleText.getLocalBounds();
 	titleText.setOrigin(titleBounds.width * 0.5f, titleBounds.height * 0.5f);
-	titleText.setPosition(windowBounds.width*0.5f, 50.f);
+	titleText.setPosition(windowBounds.width*0.5f+20, 100.f);
 	
-	float buttonY = windowBounds.height - 150.f;
+	buttonY = windowBounds.height - 180.f;
 
 	//1pText
 	select1p.setFont(font);
@@ -44,7 +45,12 @@ void TitleScene::Init()
 	select2p.setOrigin(select2Bounds.width * 0.5f, select2Bounds.height * 0.5f);
 	select2p.setPosition(windowBounds.width * 0.5f+150, buttonY);
 
-	
+	//choiceUI
+	selectButtonX = select1p.getPosition().x;
+	sf::FloatRect triangleBounds = select2p.getLocalBounds();
+	triangle.setOrigin(triangleBounds.width * 0.5f, triangleBounds.height * 0.5f);
+	triangle.setPosition(selectButtonX, buttonY-80.f);
+	triangle.setRotation(180);
 
 	Scene::Init();
 }
@@ -75,4 +81,5 @@ void TitleScene::Draw(sf::RenderWindow& window)
 	window.draw(titleText);
 	window.draw(select1p);
 	window.draw(select2p);
+	window.draw(triangle);
 }
