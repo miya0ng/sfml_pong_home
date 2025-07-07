@@ -21,7 +21,6 @@ void SingleGame::Init()
 	textScore.setCharacterSize(100);
 	textScore.setFillColor(sf::Color::White);
 	sf::FloatRect scoreBounds = textScore.getLocalBounds();
-	textGameOver.setOrigin(scoreBounds.width * 0.5f, scoreBounds.height * 0.5f);
 	textScore.setPosition(30.f, 0.f);
 
 	//choiceUI
@@ -129,6 +128,8 @@ void SingleGame::SetGameOver()
 	triangle.setOrigin(triangleBounds.width * 0.5f, triangleBounds.height * 0.5f);
 	triangle.setPosition(triangle.getPosition().x, buttonY - 80.f);
 	triangle.setRotation(180);
+
+	textScore.setString("Score: " + std::to_string(0));
 }
 
 void SingleGame::Draw(sf::RenderWindow& window)
@@ -149,5 +150,4 @@ void SingleGame::AddScore(int amount)
 	score += amount;
 	textScore.setString("Score: " + std::to_string(score));
 	sf::FloatRect scoreBounds = textScore.getLocalBounds();
-	textScore.setOrigin(scoreBounds.width * 0.5f, scoreBounds.height * 0.5f);
 }
